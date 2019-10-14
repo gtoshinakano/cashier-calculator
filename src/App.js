@@ -1,9 +1,9 @@
 import React from 'react';
 //import 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
-import Menu from './Menu'
-import Calculator from './Calculator'
-import SignedIn from './SignedIn'
+import Menu from './Components/Menu'
+import Calculator from './Components/Calculator'
+import SignedIn from './Components/SignedIn'
 
 class App extends React.Component {
 
