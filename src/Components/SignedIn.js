@@ -1,6 +1,7 @@
 import React from 'react'
 import firebase from '../FirebaseConfig'
 import {Loader, Dimmer} from 'semantic-ui-react'
+import Signin from './Signin'
 
 export default class SignedIn extends React.Component {
 
@@ -28,6 +29,6 @@ export default class SignedIn extends React.Component {
         </Dimmer>
       )
     else if(this.state.isSignedIn) return "Logged" //CONTROL PANNEL Component
-    else return "LOGIN FORM"
+    else return <Signin />
   }
 }

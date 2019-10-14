@@ -22,10 +22,8 @@ class App extends React.Component {
     switch (this.state.active) {
       case 0:
         return <Calculator />
-        break
       case 1:
         return <SignedIn />
-        break
       default:
         return <Calculator />
     }
