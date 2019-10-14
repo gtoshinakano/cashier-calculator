@@ -18,7 +18,7 @@ export default function Menu(props) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    props.changeTab(value)
+    props.changeTab(event, newValue)
   };
 
   return (
@@ -31,8 +31,8 @@ export default function Menu(props) {
         textColor="primary"
         aria-label="icon tabs example"
       >
-        <Tab icon={<ListAltIcon />} aria-label="phone" label="CALCULADORA" />
-        <Tab icon={<SettingsIcon />} aria-label="favorite" label="CADASTRAR" />
+        <Tab icon={<ListAltIcon />} label="CALCULADORA" />
+        <Tab icon={<SettingsIcon />} label="GERENCIAR" />
       </Tabs>
     </Paper>
   );
