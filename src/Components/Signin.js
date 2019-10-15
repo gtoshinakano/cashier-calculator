@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, Button, Segment, Loader} from 'semantic-ui-react'
+import {Form, Button, Segment} from 'semantic-ui-react'
 import firebase from '../FirebaseConfig'
 
 export default class Signin extends React.Component {
@@ -9,18 +9,15 @@ export default class Signin extends React.Component {
     this.state = {
       email: "",
       password: "",
-      loading: false
     }
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = () => {
-    console.log(this.state);
-    this.setState({loading: true})
     if(this.state.email !== "" && this.state.password !== ""){
       firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => this.setState({email: "", password: "", loading: true}))
+      .then(() => this.setState({email: "", password: ""}))
     }
   }
 
