@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, Button, Segment} from 'semantic-ui-react'
+import {Form, Button, Segment, Loader} from 'semantic-ui-react'
 import firebase from '../FirebaseConfig'
 
 export default class Signin extends React.Component {
@@ -20,14 +20,14 @@ export default class Signin extends React.Component {
     this.setState({loading: true})
     if(this.state.email !== "" && this.state.password !== ""){
       firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => this.setState({email: "", password: "", loading: true}))
     }
-    this.setState({email: "", password: ""})
   }
 
   render () {
     return (
       <Segment basic onSubmit={this.handleSubmit}>
-        <Form size="huge" >
+        <Form size="huge" loading={this.state.loading}>
           <Form.Field>
             <label>Email Cadastrado</label>
             <Form.Input placeholder='Email' type="email" name="email" onChange={this.handleChange} value={this.state.email} />
@@ -36,7 +36,14 @@ export default class Signin extends React.Component {
             <label>Senha</label>
             <Form.Input placeholder='Senha' type="password" name="password" onChange={this.handleChange} value={this.state.password} />
           </Form.Field>
-          <Button fluid type='submit' primary size="huge">LOGIN</Button>
+          <Button
+            fluid
+            type='submit'
+            primary size="huge"
+            disabled={
+              (this.state.email === "") || (this.state.password === "")
+            }
+          >LOGIN</Button>
         </Form>
       </Segment>
     )
