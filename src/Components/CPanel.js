@@ -9,12 +9,20 @@ export default class CPanel extends React.Component {
     super()
     this.state = {
       loading: false,
-
+      products: []
     }
   }
 
   componentDidMount() {
-    //firebase.database().ref('produtos').on('value', (produtos) =>)
+    firebase.database().ref('produtos').on('value', (product) =>{
+      if(product.exists()){
+        let products = []
+        product.forEach(p => {
+          products.push(p.val())
+        })
+        this.setState({products: products})
+      }
+    })
   }
 
   render () {
