@@ -12,9 +12,9 @@ export default class ProductsPanel extends React.Component {
   }
 
   renderList = () => {
-    return this.props.products.map(p => {
+    return this.props.products.map((p,i) => {
       return(
-        <List.Item>
+        <List.Item key={i}>
           <Image avatar src={p.avatar} size="small" />
           <List.Content>
             <List.Header as='a'>{p.nome}</List.Header>
