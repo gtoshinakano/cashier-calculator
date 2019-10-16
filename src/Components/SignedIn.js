@@ -25,7 +25,7 @@ export default class SignedIn extends React.Component {
     if(this.state.loading)
       return (
         <Dimmer active>
-          <Loader content='Loading' />
+          <Loader content='Verificando Usuário' />
         </Dimmer>
       )
     else if(this.state.isSignedIn) return "Logged" //CONTROL PANNEL Component
