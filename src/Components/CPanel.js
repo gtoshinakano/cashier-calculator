@@ -1,14 +1,15 @@
 import React from 'react'
 import firebase from '../FirebaseConfig'
-import {Loader, Dimmer} from 'semantic-ui-react'
+import {Loader, Dimmer, Segment} from 'semantic-ui-react'
 import SignOut from './SignOut'
+import ProductsPanel from './ProductsPanel'
 
 export default class CPanel extends React.Component {
 
   constructor(){
     super()
     this.state = {
-      loading: false,
+      loading: true,
       products: []
     }
   }
@@ -20,8 +21,8 @@ export default class CPanel extends React.Component {
         product.forEach(p => {
           products.push(p.val())
         })
-        this.setState({products: products})
-      }
+        this.setState({products: products, loading: false})
+      } // else TODO EXCEPTION
     })
   }
 
@@ -34,9 +35,10 @@ export default class CPanel extends React.Component {
       )
     else{
       return(
-        <>
+        <Segment basic>
+          <ProductsPanel products={this.state.products} />
           <SignOut />
-        </>
+        </Segment>
       )
     }
   }

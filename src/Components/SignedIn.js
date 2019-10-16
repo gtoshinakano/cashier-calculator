@@ -30,9 +30,7 @@ export default class SignedIn extends React.Component {
         </Dimmer>
       )
     else if(this.state.isSignedIn) return (
-      <Segment basic>
-        <CPanel />
-      </Segment>
+      <CPanel />
     )
     else return <Signin />
   }
