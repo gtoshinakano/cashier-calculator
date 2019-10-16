@@ -1,7 +1,8 @@
 import React from 'react'
 import firebase from '../FirebaseConfig'
-import {Loader, Dimmer} from 'semantic-ui-react'
+import {Loader, Dimmer, Segment} from 'semantic-ui-react'
 import Signin from './Signin'
+import CPanel from './CPanel'
 
 export default class SignedIn extends React.Component {
 
@@ -17,7 +18,7 @@ export default class SignedIn extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       if(user) this.setState({isSignedIn: true, user: user, loading: false})
-      else this.setState({loading: false})
+      else this.setState({loading: false, isSignedIn: false, user: {}})
     })
   }
 
@@ -28,7 +29,11 @@ export default class SignedIn extends React.Component {
           <Loader content='Verificando Usuário' />
         </Dimmer>
       )
-    else if(this.state.isSignedIn) return "Logged" //CONTROL PANNEL Component
+    else if(this.state.isSignedIn) return (
+      <Segment basic>
+        <CPanel />
+      </Segment>
+    )
     else return <Signin />
   }
 }
