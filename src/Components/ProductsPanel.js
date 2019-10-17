@@ -1,6 +1,7 @@
 import React from 'react'
-import {List, Image} from 'semantic-ui-react'
-
+import {List, ListItem, ListItemAvatar, Avatar, ListItemText, ListItemSecondaryAction, IconButton} from '@material-ui/core';
+import {Delete} from '@material-ui/icons'
+import EdiText from 'react-editext'
 
 export default class ProductsPanel extends React.Component {
 
@@ -14,22 +15,35 @@ export default class ProductsPanel extends React.Component {
   renderList = () => {
     return this.props.products.map((p,i) => {
       return(
-        <List.Item key={i}>
-          <Image avatar src={p.avatar} size="small" />
-          <List.Content>
-            <List.Header as='a'>{p.nome}</List.Header>
-            <List.Description>
-              <b>R$ {p.valor.toFixed(2)}</b>
-            </List.Description>
-          </List.Content>
-        </List.Item>
+        <ListItem key={i}>
+          <ListItemAvatar>
+            <Avatar src={p.avatar} />
+          </ListItemAvatar>
+          <ListItemText
+            primary={<EdiText
+              type="text"
+              value={p.nome}
+              onSave={this.onSave}
+            />}
+            secondary={<EdiText
+              type="number"
+              value={p.valor.toFixed(2)}
+              onSave={this.onSave}
+            />}
+          />
+          <ListItemSecondaryAction>
+            <IconButton edge="end" aria-label="delete">
+              <Delete />
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
       )
     })
   }
 
   render () {
     return (
-      <List size="massive" divided>
+      <List>
         {this.renderList()}
       </List>
     )

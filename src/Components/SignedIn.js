@@ -1,6 +1,6 @@
 import React from 'react'
 import firebase from '../FirebaseConfig'
-import {Loader, Dimmer, Segment} from 'semantic-ui-react'
+import {Loader, Dimmer} from 'semantic-ui-react'
 import Signin from './Signin'
 import CPanel from './CPanel'
 
